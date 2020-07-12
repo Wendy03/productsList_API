@@ -87,6 +87,7 @@ new Vue({
         this.isNew = true;
       } else if (type === 'edit') {
         vm.tempProduct = Object.assign({}, item);
+        vm.getPorduct(vm.tempProduct.id);
         $('#productModal').modal('show');
         this.isNew = false;
       } else if (type === 'del') {
@@ -99,6 +100,7 @@ new Vue({
       const url = `${apiPath}${vm.user.uuid}/admin/ec/product/${id}`;
       axios.defaults.headers['Authorization'] = `Bearer ${vm.user.token}`;
       axios.get(url).then((res) => {
+        console.log(res);
         vm.tempProduct = res.data.data;
       });
     },
